@@ -59,7 +59,7 @@ const $ = s => document.querySelector(s);
 
 function getTimerDuration(){
   let d = localStorage.getItem('difficulty') || 'normal';
-  return d === 'hard' ? 12 : (d === 'easy' ? 30 : 20);
+  return d === 'hard' ? 60 : (d === 'easy' ? 120 : 90);
 }
 
 function clearQuizTimer(){
@@ -215,10 +215,11 @@ function renderGame(){
     let why = q.why || '';
 
     timeLeft = getTimerDuration();
-    let timerHtml = `<div class="quiz-timer-wrap" id="quiz-timer-box">⏱️ <span id="timer-sec">${timeLeft}s</span> restantes</div>`;
+    function fmtTime(s){ let m=Math.floor(s/60),sec=s%60; return m>0 ? m+'m '+String(sec).padStart(2,'0')+'s' : sec+'s'; }
+    let timerHtml = `<div class="quiz-timer-wrap" id="quiz-timer-box">⏱️ <span id="timer-sec">${fmtTime(timeLeft)}</span> restantes</div>`;
 
-    g.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-      <div class="tag" style="margin:0">RETO ALEATORIO · SESIÓN 0${current + 1} (Banco de 100)</div>
+    g.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:nowrap">
+      <div class="tag" style="margin:0;white-space:nowrap;flex-shrink:0;font-size:0.78rem">RETO ALEATORIO · SESIÓN ${current + 1} <span style="opacity:0.7;font-weight:600">(Banco 100)</span></div>
       ${timerHtml}
     </div>
     <div class="question"></div>
@@ -239,8 +240,8 @@ function renderGame(){
       timeLeft--;
       let secEl = $('#timer-sec');
       let boxEl = $('#quiz-timer-box');
-      if (secEl) secEl.textContent = timeLeft + 's';
-      if (boxEl && timeLeft <= 5) boxEl.classList.add('urgent');
+      if (secEl) secEl.textContent = fmtTime(timeLeft);
+      if (boxEl && timeLeft <= 10) boxEl.classList.add('urgent');
       if (timeLeft <= 0) {
         clearQuizTimer();
         autoTimeOutReto(correct, why);
@@ -257,8 +258,8 @@ function renderGame(){
     let correct = cQ.correct !== undefined ? cQ.correct : 0;
     let why = cQ.why || '';
 
-    g.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-      <div class="tag" style="background:#ede9fe;color:#6d28d9;margin:0">CASO PRÁCTICO · SESIÓN 0${current + 1} (Banco de 100)</div>
+    g.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:nowrap">
+      <div class="tag" style="background:#ede9fe;color:#6d28d9;margin:0;white-space:nowrap;flex-shrink:0;font-size:0.78rem">CASO PRÁCTICO · SESIÓN ${current + 1} <span style="opacity:0.7;font-weight:600">(Banco 100)</span></div>
     </div>
     ${cQ.scenario ? `<div class="case" style="margin-bottom:16px;border-left:5px solid #6d28d9;background:#f5f3ff"><b>Caso de Estudio Real:</b><br><span class="case-desc"></span></div>` : ''}
     <div class="question" style="font-size:1.15rem"></div>
@@ -297,7 +298,7 @@ function renderGame(){
     if (!examList || !examList.length || examIdx >= examList.length) {
       let grade = Math.round((examScore / 5) * 20);
       let passed = grade >= 14;
-      g.innerHTML = `<div class="tag" style="background:#ede9fe;color:#6d28d9">EXAMEN COMPLETADO · SESIÓN 0${current + 1}</div>
+      g.innerHTML = `<div class="tag" style="background:#ede9fe;color:#6d28d9;white-space:nowrap">EXAMEN COMPLETADO · SESIÓN ${current + 1}</div>
         <div style="text-align:center;padding:28px 16px">
           <div style="font-size:3rem;margin-bottom:8px">${passed ? '🏆' : '📚'}</div>
           <h3 style="font-size:1.6rem;margin:0 0 8px;color:${passed ? '#059669' : '#dc2626'}">${passed ? '¡Aprobado con Éxito!' : 'Sigue practicando'}</h3>
@@ -318,9 +319,9 @@ function renderGame(){
     let correct = q.correct;
     let why = q.why || '';
 
-    g.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-      <div class="tag" style="margin:0">EXAMEN ${examIdx + 1} de 5 · SESIÓN 0${current + 1}</div>
-      <small style="color:#64748b;font-weight:700">Aciertos: ${examScore} / 5</small>
+    g.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:nowrap">
+      <div class="tag" style="margin:0;white-space:nowrap;flex-shrink:0;font-size:0.78rem">EXAMEN ${examIdx + 1}/5 · SESIÓN ${current + 1}</div>
+      <small style="color:#64748b;font-weight:700;white-space:nowrap">Aciertos: ${examScore}/5</small>
     </div>
     <div class="question"></div>
     <div class="options"></div>
