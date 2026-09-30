@@ -249,6 +249,7 @@
   </div>
 
   <script src="settings.js"></script>
+<script src="gamification.js"></script>
 
   <script>
   // =========================================================================
@@ -711,6 +712,7 @@
       title.style.color = '#059669';
       desc.textContent = `Has alcanzado el ${pct}% de aciertos. Tu dominio técnico cumple los estándares de acreditación del curso. Tu certificado oficial está disponible a continuación:`;
       certCard.style.display = 'block';
+      if(window.Gamification){ let b=Gamification.getUnlockedBadges(); if(b.indexOf('final_exam')===-1){b.push('final_exam'); localStorage.setItem('badges', JSON.stringify(b)); Gamification.showBadgeToast(Gamification.badgesList.find(x=>x.id==='final_exam'));} }
     } else {
       title.textContent = `Examen No Aprobado (${grade} / 20)`;
       title.style.color = '#dc2626';
