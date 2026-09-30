@@ -90,48 +90,9 @@
 </section>
 
 <section class="section" id="examen-sesion">
-  <h2>Simulacro de Examen Oficial · Sesión 03</h2>
-  <p>Evalúa tus conocimientos sobre aseguramiento, control de calidad y metodologías ágiles:</p>
-
-  <div class="q">
-    <b>Pregunta 1: ¿Cuál es la principal diferencia conceptual entre QA (Quality Assurance) y QC (Quality Control)?</b>
-    <button onclick="show('ex3-q1')">a) QA está orientado al proceso y es preventivo; QC está orientado al producto y es reactivo/detectivo.</button>
-    <button onclick="show('ex3-q1')">b) QA solo lo hacen los programadores y QC los gerentes.</button>
-    <button onclick="show('ex3-q1')">c) QA requiere herramientas de pago y QC solo herramientas gratuitas.</button>
-    <p id="ex3-q1" class="answer"><b>Correcto: a).</b> QA busca mejorar los procesos para que los defectos no ocurran; QC examina el producto terminado o intermedio para encontrar los defectos que se filtraron.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 2: ¿Qué es la 'Definition of Done' (DoD) en un marco ágil con enfoque de SQA?</b>
-    <button onclick="show('ex3-q2')">a) Una lista de acuerdos y criterios de calidad que una funcionalidad debe cumplir rigurosamente antes de considerarse terminada.</button>
-    <button onclick="show('ex3-q2')">b) La hora en que termina la jornada laboral de los programadores.</button>
-    <button onclick="show('ex3-q2')">c) El presupuesto total aprobado para el sprint.</button>
-    <p id="ex3-q2" class="answer"><b>Correcto: a).</b> La DoD incluye criterios como código revisado, pruebas unitarias aprobadas, documentación técnica actualizada y despliegue exitoso en staging.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 3: ¿Cuál de las siguientes herramientas de calidad se utiliza específicamente para diagramar las causas raíz de un problema agrupadas por categorías (Personas, Procesos, Tecnología, etc.)?</b>
-    <button onclick="show('ex3-q3')">a) Diagrama de Ishikawa (Espina de Pescado)</button>
-    <button onclick="show('ex3-q3')">b) Diagrama de Gantt</button>
-    <button onclick="show('ex3-q3')">c) Matriz BCG</button>
-    <p id="ex3-q3" class="answer"><b>Correcto: a) Diagrama de Ishikawa.</b> Creado por Kaoru Ishikawa, permite mapear visualmente todas las posibles causas raíz de un defecto de calidad.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 4: En una reunión diaria de Scrum (Daily Standup), ¿cuál es el aporte principal del rol de QA?</b>
-    <button onclick="show('ex3-q4')">a) Identificar riesgos de calidad tempranos, dependencias de pruebas y colaborar en la resolución de bloqueos.</button>
-    <button onclick="show('ex3-q4')">b) Asignar culpas a los desarrolladores por los bugs del día anterior.</button>
-    <button onclick="show('ex3-q4')">c) Guardar silencio hasta que el software esté terminado.</button>
-    <p id="ex3-q4" class="answer"><b>Correcto: a).</b> El profesional de QA aporta visibilidad de riesgos, estado de pruebas de historias en curso y criterios de aceptación.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 5: ¿Por qué se afirma que la calidad debe integrarse 'desde el día uno' (Shift-Left Testing)?</b>
-    <button onclick="show('ex3-q5')">a) Porque previene que los defectos se propaguen y abarata sustancialmente los costos de desarrollo.</button>
-    <button onclick="show('ex3-q5')">b) Porque permite no realizar pruebas al final del proyecto.</button>
-    <button onclick="show('ex3-q5')">c) Porque los frameworks modernos no funcionan si no se hace así.</button>
-    <p id="ex3-q5" class="answer"><b>Correcto: a).</b> Desplazar las actividades de calidad hacia la izquierda (fases iniciales) reduce el retrabajo y el tiempo total de llegada al mercado.</p>
-  </div>
+  <h2>🎯 Simulacro de Examen Oficial · Sesión 03</h2>
+  <p>20 preguntas aleatorias de un banco de 100. Incluye selección múltiple, verdadero/falso, casos de estudio y respuesta escrita. Cada intento genera un examen diferente.</p>
+  <div id="exam-container-s3"></div>
 </section>
 
 </div></div></main><script>function show(id){document.getElementById(id).classList.add('show')}</script><script>document.querySelectorAll("[data-xp]").forEach(x=>x.textContent=localStorage.xp||0);document.querySelectorAll("[data-streak]").forEach(x=>x.textContent=localStorage.streak||0);document.querySelectorAll("[data-record]").forEach(x=>x.textContent=localStorage.record||0)</script><script>(function(){var p=location.pathname.split("/").pop();document.querySelectorAll(".topnav a").forEach(function(a){if(a.getAttribute("href")===p)a.classList.add("active");});})();</script>
@@ -176,4 +137,17 @@
 </div>
 <script src="settings.js"></script>
 <script src="gamification.js"></script>
+
+<script src="data/questions-s3.js"></script>
+<script src="exam-engine.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  if(window.ExamEngine && window.QUESTIONS_S3){
+    ExamEngine.mount('exam-container-s3', window.QUESTIONS_S3, {
+      sessionNum: 3,
+      title: 'Simulacro de Examen · Sesión 03'
+    });
+  }
+});
+</script>
 </body></html>

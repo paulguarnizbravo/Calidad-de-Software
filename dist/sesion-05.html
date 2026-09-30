@@ -96,48 +96,9 @@
 </section>
 
 <section class="section" id="examen-sesion">
-  <h2>Simulacro de Examen Oficial · Sesión 05</h2>
-  <p>Preguntas sobre los artefactos esenciales en el ciclo de pruebas:</p>
-
-  <div class="q">
-    <b>Pregunta 1: ¿Cuál es el propósito primordial de la 'Matriz de Trazabilidad de Requisitos' (RTM)?</b>
-    <button onclick="show('ex5-q1')">a) Relacionar bidireccionalmente cada requisito con sus casos de prueba para garantizar cobertura total y analizar el impacto de cambios.</button>
-    <button onclick="show('ex5-q1')">b) Calcular automáticamente el sueldo de los testers.</button>
-    <button onclick="show('ex5-q1')">c) Reemplazar la base de datos de la empresa.</button>
-    <p id="ex5-q1" class="answer"><b>Correcto: a).</b> Permite verificar que no haya requisitos sin probar y, si un requisito cambia, ubicar rápidamente los casos de prueba que deben actualizarse.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 2: ¿Qué sección de un Plan de Pruebas (Test Plan) define qué módulos o componentes serán evaluados y cuáles quedan expresamente fuera de las pruebas?</b>
-    <button onclick="show('ex5-q2')">a) Alcance de las Pruebas (In Scope / Out of Scope)</button>
-    <button onclick="show('ex5-q2')">b) Anexos financieros</button>
-    <button onclick="show('ex5-q2')">c) Organigrama corporativo</button>
-    <p id="ex5-q2" class="answer"><b>Correcto: a) Alcance de las Pruebas.</b> Es vital delimitar claramente las fronteras de lo que se va a probar para gestionar expectativas y recursos.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 3: En un Caso de Prueba profesional, ¿qué diferencia existe entre el 'Resultado Esperado' y el 'Resultado Obtenido'?</b>
-    <button onclick="show('ex5-q3')">a) El esperado se define antes de ejecutar según la especificación; el obtenido se documenta durante la ejecución real del software.</button>
-    <button onclick="show('ex5-q3')">b) Son exactamente lo mismo y significan que la prueba pasó.</button>
-    <button onclick="show('ex5-q3')">c) El esperado lo escribe el cliente y el obtenido el programador.</button>
-    <p id="ex5-q3" class="answer"><b>Correcto: a).</b> Si el resultado obtenido difiere del resultado esperado, se detecta una falla y se abre un reporte de defecto.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 4: En un Informe de Defectos (Bug Report), ¿qué representa la 'Severidad'?</b>
-    <button onclick="show('ex5-q4')">a) El impacto técnico o funcional que provoca el defecto en el sistema.</button>
-    <button onclick="show('ex5-q4')">b) La urgencia comercial con que el cliente desea la corrección.</button>
-    <button onclick="show('ex5-q4')">c) El estado de ánimo del evaluador.</button>
-    <p id="ex5-q4" class="answer"><b>Correcto: a).</b> La severidad mide el daño técnico (Crítica, Mayor, Menor, Trivial), mientras que la prioridad mide la urgencia de negocio.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 5: ¿Cuál es el documento final que recopila métricas de ejecución, análisis de defectos residuales y recomienda la decisión de pase a producción (Go / No-Go)?</b>
-    <button onclick="show('ex5-q5')">a) Informe de Resultados de Pruebas (Test Summary Report / Cierre)</button>
-    <button onclick="show('ex5-q5')">b) Manual de usuario preliminar</button>
-    <button onclick="show('ex5-q5')">c) Hoja de cálculo de asistencia</button>
-    <p id="ex5-q5" class="answer"><b>Correcto: a).</b> El informe de resultados sintetiza toda la evidencia de pruebas para que la gerencia y el negocio tomen la decisión informada de liberación.</p>
-  </div>
+  <h2>🎯 Simulacro de Examen Oficial · Sesión 05</h2>
+  <p>20 preguntas aleatorias de un banco de 100. Incluye selección múltiple, verdadero/falso, casos de estudio y respuesta escrita. Cada intento genera un examen diferente.</p>
+  <div id="exam-container-s5"></div>
 </section>
 
 </div></div></main><script>function show(id){document.getElementById(id).classList.add('show')}</script><script>document.querySelectorAll("[data-xp]").forEach(x=>x.textContent=localStorage.xp||0);document.querySelectorAll("[data-streak]").forEach(x=>x.textContent=localStorage.streak||0);document.querySelectorAll("[data-record]").forEach(x=>x.textContent=localStorage.record||0)</script><script>(function(){var p=location.pathname.split("/").pop();document.querySelectorAll(".topnav a").forEach(function(a){if(a.getAttribute("href")===p)a.classList.add("active");});})();</script>
@@ -182,4 +143,17 @@
 </div>
 <script src="settings.js"></script>
 <script src="gamification.js"></script>
+
+<script src="data/questions-s5.js"></script>
+<script src="exam-engine.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  if(window.ExamEngine && window.QUESTIONS_S5){
+    ExamEngine.mount('exam-container-s5', window.QUESTIONS_S5, {
+      sessionNum: 5,
+      title: 'Simulacro de Examen · Sesión 05'
+    });
+  }
+});
+</script>
 </body></html>

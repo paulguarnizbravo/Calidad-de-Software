@@ -88,48 +88,9 @@
 </section>
 
 <section class="section" id="examen-sesion">
-  <h2>Simulacro de Examen Oficial · Sesión 01</h2>
-  <p>Evalúa tus competencias con preguntas tipo certificación y nivel universitario sobre los fundamentos de la calidad:</p>
-
-  <div class="q">
-    <b>Pregunta 1: Según el estándar ISO/IEC 25010, ¿cuál de los siguientes atributos describe la capacidad de un software para prevenir accesos no autorizados a los datos?</b>
-    <button onclick="reveal('ex1-q1')">a) Seguridad</button>
-    <button onclick="reveal('ex1-q1')">b) Mantenibilidad</button>
-    <button onclick="reveal('ex1-q1')">c) Portabilidad</button>
-    <p id="ex1-q1" class="answer"><b>Correcto: a) Seguridad.</b> Evalúa confidencialidad, integridad, no repudio, autenticidad y responsabilidad para salvaguardar la información.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 2: ¿Cuál es el impacto financiero de la 'Curva de Detección de Defectos' de Boehm?</b>
-    <button onclick="reveal('ex1-q2')">a) Corregir un error en fase de requisitos cuesta significativamente menos que en producción.</button>
-    <button onclick="reveal('ex1-q2')">b) Es más barato corregir errores en producción gracias a los parches automáticos.</button>
-    <button onclick="reveal('ex1-q2')">c) El costo de corrección de defectos se mantiene constante a lo largo de todo el ciclo de vida.</button>
-    <p id="ex1-q2" class="answer"><b>Correcto: a).</b> Boehm demostró que resolver un error detectado en producción puede costar hasta 100 veces más que detectarlo y resolverlo durante la fase de análisis de requisitos.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 3: 'El sistema debe soportar un tiempo medio entre fallos (MTBF) de al menos 720 horas.' Este requerimiento corresponde a:</b>
-    <button onclick="reveal('ex1-q3')">a) Requisito Funcional de Interoperabilidad</button>
-    <button onclick="reveal('ex1-q3')">b) Requisito No Funcional de Fiabilidad (Madurez)</button>
-    <button onclick="reveal('ex1-q3')">c) Requisito Funcional de Operabilidad</button>
-    <p id="ex1-q3" class="answer"><b>Correcto: b).</b> El MTBF (Mean Time Between Failures) es una métrica clásica de fiabilidad que cuantifica la estabilidad y madurez operativa del sistema.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 4: En la perspectiva de la calidad del producto de software, ¿por qué un software que no tiene errores de compilación ni excepciones puede considerarse de baja calidad?</b>
-    <button onclick="reveal('ex1-q4')">a) Porque la calidad también exige que satisfaga las necesidades reales y expectativas de uso del usuario.</button>
-    <button onclick="reveal('ex1-q4')">b) Porque el software debe pesar menos de 10 Megabytes obligatoriamente.</button>
-    <button onclick="reveal('ex1-q4')">c) Porque ningún software compilado puede considerarse de calidad antes de 5 años.</button>
-    <p id="ex1-q4" class="answer"><b>Correcto: a).</b> La ausencia de bugs técnicos no garantiza calidad si el software es incomprensible, lento, inseguro o resuelve el problema equivocado.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 5: ¿Cuál de las siguientes subcaracterísticas pertenece a la 'Usabilidad' en la norma ISO 25010?</b>
-    <button onclick="reveal('ex1-q5')">a) Modularidad y reusabilidad</button>
-    <button onclick="reveal('ex1-q5')">b) Capacidad de aprendizaje, operabilidad y protección contra errores de usuario</button>
-    <button onclick="reveal('ex1-q5')">c) Tolerancia a fallos y capacidad de recuperación</button>
-    <p id="ex1-q5" class="answer"><b>Correcto: b).</b> La usabilidad contempla la comprensibilidad, facilidad de aprendizaje, operabilidad, estética de la interfaz y accesibilidad.</p>
-  </div>
+  <h2>🎯 Simulacro de Examen Oficial · Sesión 01</h2>
+  <p>20 preguntas aleatorias de un banco de 100. Incluye selección múltiple, verdadero/falso, casos de estudio y respuesta escrita. Cada intento genera un examen diferente.</p>
+  <div id="exam-container-s1"></div>
 </section>
 
 <section class="section"><h2>Idea de cierre</h2><p>La calidad de software garantiza que los sistemas cumplan requerimientos y den una experiencia satisfactoria. Funcionalidad, fiabilidad y usabilidad ayudan a evaluar desempeño y aceptación. Gestionar la calidad, aplicar aseguramiento y control permite minimizar errores y optimizar resultados.</p></section></div></div></main><script>function reveal(id){document.getElementById(id).classList.add('show')}</script><script>document.querySelectorAll("[data-xp]").forEach(x=>x.textContent=localStorage.xp||0);document.querySelectorAll("[data-streak]").forEach(x=>x.textContent=localStorage.streak||0);document.querySelectorAll("[data-record]").forEach(x=>x.textContent=localStorage.record||0)</script><script>(function(){var p=location.pathname.split("/").pop();document.querySelectorAll(".topnav a").forEach(function(a){if(a.getAttribute("href")===p)a.classList.add("active");});})();</script>
@@ -174,4 +135,17 @@
 </div>
 <script src="settings.js"></script>
 <script src="gamification.js"></script>
+
+<script src="data/questions-s1.js"></script>
+<script src="exam-engine.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  if(window.ExamEngine && window.QUESTIONS_S1){
+    ExamEngine.mount('exam-container-s1', window.QUESTIONS_S1, {
+      sessionNum: 1,
+      title: 'Simulacro de Examen · Sesión 01'
+    });
+  }
+});
+</script>
 </body></html>

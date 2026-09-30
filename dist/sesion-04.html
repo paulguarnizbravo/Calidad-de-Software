@@ -95,48 +95,9 @@
 </section>
 
 <section class="section" id="examen-sesion">
-  <h2>Simulacro de Examen Oficial · Sesión 04</h2>
-  <p>Preguntas tipo certificación internacional ISTQB sobre fundamentos de pruebas:</p>
-
-  <div class="q">
-    <b>Pregunta 1: ¿Cuál es la principal característica de las 'Pruebas Estáticas'?</b>
-    <button onclick="show('ex4-q1')">a) No requieren la ejecución del código fuente del software.</button>
-    <button onclick="show('ex4-q1')">b) Se realizan únicamente en servidores apagados.</button>
-    <button onclick="show('ex4-q1')">c) No encuentran ningún defecto.</button>
-    <p id="ex4-q1" class="answer"><b>Correcto: a).</b> Las pruebas estáticas comprenden revisiones manuales de código, inspecciones de documentación y análisis estático mediante herramientas (como SonarQube).</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 2: ¿En qué nivel de pruebas dinámicas se evalúa la interacción y comunicación entre dos o más módulos o servicios integrados?</b>
-    <button onclick="show('ex4-q2')">a) Pruebas Unitarias</button>
-    <button onclick="show('ex4-q2')">b) Pruebas de Integración</button>
-    <button onclick="show('ex4-q2')">c) Pruebas de Aceptación</button>
-    <p id="ex4-q2" class="answer"><b>Correcto: b) Pruebas de Integración.</b> Se enfocan en las interfaces de comunicación, intercambio de datos y dependencias entre módulos ya probados unitariamente.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 3: Las pruebas de 'Caja Blanca' (White Box Testing) se caracterizan principalmente porque:</b>
-    <button onclick="show('ex4-q3')">a) El evaluador conoce y examina la estructura lógica interna y el código fuente del software.</button>
-    <button onclick="show('ex4-q3')">b) La interfaz gráfica de usuario debe tener fondo blanco.</button>
-    <button onclick="show('ex4-q3')">c) No se tiene acceso a ningún documento del proyecto.</button>
-    <p id="ex4-q3" class="answer"><b>Correcto: a).</b> Diseñan casos de prueba basándose en rutas de código, sentencias, bucles, ramas y condiciones.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 4: ¿Qué técnica de caja negra evalúa valores justo en las fronteras de las particiones válidas e inválidas?</b>
-    <button onclick="show('ex4-q4')">a) Análisis de Valores Límite (Boundary Value Analysis)</button>
-    <button onclick="show('ex4-q4')">b) Cobertura de Sentencias</button>
-    <button onclick="show('ex4-q4')">c) Pruebas de Flujo de Datos</button>
-    <p id="ex4-q4" class="answer"><b>Correcto: a).</b> El análisis de valores límite se basa en que la gran mayoría de los defectos lógicos ocurren en las condiciones de borde (&lt;, &lt;=, &gt;, &gt;=).</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 5: ¿Cuál es el orden correcto en los niveles de pruebas según el modelo clásico en V?</b>
-    <button onclick="show('ex4-q5')">a) Unitarias → Integración → Sistema → Aceptación</button>
-    <button onclick="show('ex4-q5')">b) Aceptación → Unitarias → Rendimiento → Cierre</button>
-    <button onclick="show('ex4-q5')">c) Sistema → Unitarias → Integración → Regresión</button>
-    <p id="ex4-q5" class="answer"><b>Correcto: a).</b> Primero se valida cada componente aislado (Unitario), luego su comunicación (Integración), luego el producto completo (Sistema) y finalmente la idoneidad para el cliente (Aceptación UAT).</p>
-  </div>
+  <h2>🎯 Simulacro de Examen Oficial · Sesión 04</h2>
+  <p>20 preguntas aleatorias de un banco de 100. Incluye selección múltiple, verdadero/falso, casos de estudio y respuesta escrita. Cada intento genera un examen diferente.</p>
+  <div id="exam-container-s4"></div>
 </section>
 
 </div></div></main><script>function show(id){document.getElementById(id).classList.add('show')}</script><script>document.querySelectorAll("[data-xp]").forEach(x=>x.textContent=localStorage.xp||0);document.querySelectorAll("[data-streak]").forEach(x=>x.textContent=localStorage.streak||0);document.querySelectorAll("[data-record]").forEach(x=>x.textContent=localStorage.record||0)</script><script>(function(){var p=location.pathname.split("/").pop();document.querySelectorAll(".topnav a").forEach(function(a){if(a.getAttribute("href")===p)a.classList.add("active");});})();</script>
@@ -181,4 +142,17 @@
 </div>
 <script src="settings.js"></script>
 <script src="gamification.js"></script>
+
+<script src="data/questions-s4.js"></script>
+<script src="exam-engine.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  if(window.ExamEngine && window.QUESTIONS_S4){
+    ExamEngine.mount('exam-container-s4', window.QUESTIONS_S4, {
+      sessionNum: 4,
+      title: 'Simulacro de Examen · Sesión 04'
+    });
+  }
+});
+</script>
 </body></html>

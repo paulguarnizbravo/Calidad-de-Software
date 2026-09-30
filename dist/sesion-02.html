@@ -73,48 +73,9 @@
 </section>
 
 <section class="section" id="examen-sesion">
-  <h2>Simulacro de Examen Oficial · Sesión 02</h2>
-  <p>Pon a prueba tus conocimientos sobre estándares y modelos de calidad:</p>
-
-  <div class="q">
-    <b>Pregunta 1: En el modelo CMMI, ¿cuál es la diferencia principal entre el Nivel 2 (Gestionado) y el Nivel 3 (Definido)?</b>
-    <button onclick="show('ex2-q1')">a) En el Nivel 2 los procesos se gestionan a nivel de cada proyecto; en el Nivel 3 los procesos se estandarizan a nivel de toda la organización.</button>
-    <button onclick="show('ex2-q1')">b) El Nivel 2 utiliza inteligencia artificial y el Nivel 3 no.</button>
-    <button onclick="show('ex2-q1')">c) El Nivel 2 no requiere pruebas de software.</button>
-    <p id="ex2-q1" class="answer"><b>Correcto: a).</b> En CMMI Nivel 2 los proyectos individuales tienen disciplina, pero en el Nivel 3 existe un conjunto de procesos estándar definidos institucionalmente para toda la empresa.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 2: ¿Qué norma internacional se conoce formalmente como SPICE (Software Process Improvement and Capability Determination)?</b>
-    <button onclick="show('ex2-q2')">a) ISO/IEC 15504</button>
-    <button onclick="show('ex2-q2')">b) ISO/IEC 25010</button>
-    <button onclick="show('ex2-q2')">c) ISO 27001</button>
-    <p id="ex2-q2" class="answer"><b>Correcto: a) ISO/IEC 15504 (SPICE).</b> Es el marco de trabajo para la evaluación y mejora de la capacidad de los procesos de desarrollo de software.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 3: En la familia de normas ISO/IEC 25000 (SQuaRE), ¿cuál es la división encargada de los 'Modelos de Calidad' del producto y de calidad en uso?</b>
-    <button onclick="show('ex2-q3')">a) ISO/IEC 2501n</button>
-    <button onclick="show('ex2-q3')">b) ISO/IEC 2502n</button>
-    <button onclick="show('ex2-q3')">c) ISO/IEC 2504n</button>
-    <p id="ex2-q3" class="answer"><b>Correcto: a) ISO/IEC 2501n.</b> Contiene la norma ISO/IEC 25010 con las 8 características del producto y las 5 de calidad en uso.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 4: ¿Cuál es el orden lógico del Ciclo Deming (PHVA)?</b>
-    <button onclick="show('ex2-q4')">a) Programar, Homologar, Validar, Auditar</button>
-    <button onclick="show('ex2-q4')">b) Planificar, Hacer, Verificar, Actuar (Plan, Do, Check, Act)</button>
-    <button onclick="show('ex2-q4')">c) Probar, Hallar, Verificar, Automatizar</button>
-    <p id="ex2-q4" class="answer"><b>Correcto: b).</b> PHVA es la base de la mejora continua en sistemas de gestión de la calidad como ISO 9001.</p>
-  </div>
-
-  <div class="q">
-    <b>Pregunta 5: ¿Cuál de los siguientes es un modelo enfocado primariamente en la calidad del 'Producto' y no en el proceso?</b>
-    <button onclick="show('ex2-q5')">a) McCall / FURPS / ISO 25010</button>
-    <button onclick="show('ex2-q5')">b) CMMI / SPICE</button>
-    <button onclick="show('ex2-q5')">c) ISO 9001</button>
-    <p id="ex2-q5" class="answer"><b>Correcto: a).</b> McCall, Boehm, FURPS e ISO 25010 analizan los atributos del artefacto de software final resultante.</p>
-  </div>
+  <h2>🎯 Simulacro de Examen Oficial · Sesión 02</h2>
+  <p>20 preguntas aleatorias de un banco de 100. Incluye selección múltiple, verdadero/falso, casos de estudio y respuesta escrita. Cada intento genera un examen diferente.</p>
+  <div id="exam-container-s2"></div>
 </section>
 
 </div></div></main><script>function show(id){document.getElementById(id).classList.add('show')}</script><script>document.querySelectorAll("[data-xp]").forEach(x=>x.textContent=localStorage.xp||0);document.querySelectorAll("[data-streak]").forEach(x=>x.textContent=localStorage.streak||0);document.querySelectorAll("[data-record]").forEach(x=>x.textContent=localStorage.record||0)</script><script>(function(){var p=location.pathname.split("/").pop();document.querySelectorAll(".topnav a").forEach(function(a){if(a.getAttribute("href")===p)a.classList.add("active");});})();</script>
@@ -159,4 +120,17 @@
 </div>
 <script src="settings.js"></script>
 <script src="gamification.js"></script>
+
+<script src="data/questions-s2.js"></script>
+<script src="exam-engine.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  if(window.ExamEngine && window.QUESTIONS_S2){
+    ExamEngine.mount('exam-container-s2', window.QUESTIONS_S2, {
+      sessionNum: 2,
+      title: 'Simulacro de Examen · Sesión 02'
+    });
+  }
+});
+</script>
 </body></html>
