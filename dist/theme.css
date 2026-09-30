@@ -2279,3 +2279,49 @@ body.dark-theme .theme-toggle-btn:hover {
   background: #7c3aed !important;
   border-color: #c4b5fd !important;
 }
+
+
+/* Dedicated Theme Toggle Button (Sphere Icon matching user image) */
+.theme-toggle-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 40px !important;
+  height: 40px !important;
+  background: #f8fafc !important;
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 12px !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  margin-right: 6px !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+  flex: 0 0 40px !important;
+  outline: none !important;
+}
+
+.theme-toggle-btn:hover {
+  transform: translateY(-2px) scale(1.04) !important;
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.22) !important;
+  border-color: #8b5cf6 !important;
+}
+
+.theme-toggle-btn .theme-sphere {
+  display: inline-flex;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-toggle-btn.dark-active .theme-sphere {
+  transform: rotate(180deg);
+}
+
+body.dark-theme .theme-toggle-btn {
+  background: #241d44 !important;
+  border-color: #4a3e78 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+}
+
+body.dark-theme .theme-toggle-btn:hover {
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35) !important;
+}

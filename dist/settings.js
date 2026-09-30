@@ -188,17 +188,21 @@
   }
   window.applyTheme = applyTheme;
 
+  var SPHERE_SVG = '<span class="theme-sphere"><svg viewBox="0 0 24 24" width="22" height="22"><defs><linearGradient id="p-side" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#4c1d95"/></linearGradient><linearGradient id="y-side" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fde047"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient><clipPath id="c-left"><rect x="0" y="0" width="12" height="24"/></clipPath><clipPath id="c-right"><rect x="12" y="0" width="12" height="24"/></clipPath></defs><circle cx="12" cy="12" r="10" fill="url(#p-side)" clip-path="url(#c-left)"/><circle cx="8" cy="15" r="2" fill="#3b0764" clip-path="url(#c-left)"/><circle cx="9.5" cy="8.5" r="1.3" fill="#3b0764" clip-path="url(#c-left)"/><circle cx="12" cy="12" r="10" fill="url(#y-side)" clip-path="url(#c-right)"/><circle cx="16" cy="9" r="1.8" fill="#d97706" clip-path="url(#c-right)"/><circle cx="15" cy="16" r="1.4" fill="#d97706" clip-path="url(#c-right)"/></svg></span>';
+
   function updateThemeButtonUI() {
     var cur = localStorage.getItem('visualTheme') || 'light';
     var isDark = cur === 'dark';
     document.querySelectorAll('.theme-toggle-btn').forEach(function(btn){
-      btn.innerHTML = isDark ? '☀️' : '🌙';
-      btn.title = isDark ? 'Cambiar a Modo Claro' : 'Cambiar a Modo Oscuro';
+      btn.innerHTML = SPHERE_SVG;
+      btn.title = isDark ? 'Modo Oscuro Activo · Cambiar a Modo Claro' : 'Modo Claro Activo · Cambiar a Modo Oscuro';
       btn.setAttribute('aria-label', btn.title);
+      btn.classList.toggle('dark-active', isDark);
     });
   }
 
-  function toggleTheme() {
+  function toggleTheme(e) {
+    if (e && e.preventDefault) e.preventDefault();
     var cur = localStorage.getItem('visualTheme') || 'light';
     var next = cur === 'dark' ? 'light' : 'dark';
     localStorage.setItem('visualTheme', next);
@@ -370,3 +374,16 @@
   }
 
 })();
+
+
+  function initThemeToggleButtons() {
+    updateThemeButtonUI();
+    document.querySelectorAll('.theme-toggle-btn').forEach(function(btn){
+      btn.onclick = toggleTheme;
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggleButtons);
+  } else {
+    initThemeToggleButtons();
+  }
