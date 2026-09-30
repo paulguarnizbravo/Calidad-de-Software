@@ -2246,3 +2246,36 @@ body.dark-theme #repaso .q .answer {
   border-left-color: #10b981 !important;
   color: #a7f3d0 !important;
 }
+
+
+/* Dedicated Theme Toggle Button (Sol/Luna) */
+.theme-toggle-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: #242040;
+  border: 1px solid #403868;
+  border-radius: 12px;
+  font-size: 1.15rem;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.15s, background 0.15s, border-color 0.15s;
+  flex: 0 0 38px !important;
+  padding: 0;
+  margin-right: 4px;
+}
+.theme-toggle-btn:hover {
+  background: #6d28d9;
+  border-color: #a78bfa;
+  transform: translateY(-2px);
+}
+body.dark-theme .theme-toggle-btn {
+  background: #2b2355 !important;
+  border-color: #4a3b78 !important;
+}
+body.dark-theme .theme-toggle-btn:hover {
+  background: #7c3aed !important;
+  border-color: #c4b5fd !important;
+}

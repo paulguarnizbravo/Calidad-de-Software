@@ -91,10 +91,12 @@
         var fills = document.querySelectorAll('.session-progress-fill[data-session="' + s + '"], [data-progress-session="' + s + '"]');
         fills.forEach(function(el){
           el.style.width = pct + '%';
-          if (el.dataset.showText !== 'false') {
-            var label = el.parentElement.querySelector('.session-progress-text');
-            if (label) label.textContent = pct + '%';
+          var trunk = el.closest('.trunk');
+          var label = trunk ? trunk.querySelector('.session-progress-text') : null;
+          if (!label && el.parentElement && el.parentElement.nextElementSibling) {
+            label = el.parentElement.nextElementSibling.querySelector('.session-progress-text');
           }
+          if (label) label.textContent = pct + '%';
         });
       }
     },

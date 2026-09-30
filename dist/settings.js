@@ -184,8 +184,33 @@
       document.documentElement.setAttribute('data-theme', 'light');
       if (document.body) document.body.classList.remove('dark-theme');
     }
+    updateThemeButtonUI();
   }
   window.applyTheme = applyTheme;
+
+  function updateThemeButtonUI() {
+    var cur = localStorage.getItem('visualTheme') || 'light';
+    var isDark = cur === 'dark';
+    document.querySelectorAll('.theme-toggle-btn').forEach(function(btn){
+      btn.innerHTML = isDark ? '☀️' : '🌙';
+      btn.title = isDark ? 'Cambiar a Modo Claro' : 'Cambiar a Modo Oscuro';
+      btn.setAttribute('aria-label', btn.title);
+    });
+  }
+
+  function toggleTheme() {
+    var cur = localStorage.getItem('visualTheme') || 'light';
+    var next = cur === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('visualTheme', next);
+    applyTheme(next);
+    if (window.Sound) Sound.click();
+    updateThemeButtonUI();
+    var themeSelect = document.getElementById('st-theme');
+    if (themeSelect) themeSelect.value = next;
+  }
+  window.toggleTheme = toggleTheme;
+  window.updateThemeButtonUI = updateThemeButtonUI;
+
 
   // Apply immediately upon load
   var currentTheme = localStorage.getItem('visualTheme') || 'light';
