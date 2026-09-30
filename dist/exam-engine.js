@@ -240,6 +240,7 @@
           elFeedback.className = 'q-feedback ee-feedback good show';
           elFeedback.innerHTML = '<b>¡Correcto! (+10 Pts)</b> ' + (q.why || '');
           if (window.Gamification) {
+            Gamification.removeMissedQuestion(q.title || q.text);
             Gamification.recordAnswer(true, 10, triggerEl, sessionNum);
           }
         } else {
@@ -247,6 +248,13 @@
           elFeedback.className = 'q-feedback ee-feedback bad show';
           elFeedback.innerHTML = '<b>Respuesta incorrecta.</b> La respuesta correcta es: <u>' + correctAnsText + '</u>.<br>' + (q.why || '');
           if (window.Gamification) {
+            Gamification.saveMissedQuestion({
+              session: q.session || q.cat || ('Sesión ' + (sessionNum || 1)),
+              question: q.title || q.text,
+              options: q.options || [],
+              correct: q.correct !== undefined ? q.correct : 0,
+              why: q.why || ''
+            });
             Gamification.recordAnswer(false, 0, triggerEl, sessionNum);
           }
         }

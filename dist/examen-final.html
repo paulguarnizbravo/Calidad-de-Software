@@ -1,8 +1,8 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#6d28d9"><meta property="og:title" content="Quality Quest · Calidad de Software"><meta property="og:description" content="Plataforma de estudio y preparación interactiva de Calidad de Software."><meta property="og:type" content="website"><link rel="manifest" href="manifest.json">
   <title>Examen Final Integrador · Calidad de Software</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;600;700;800&family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
@@ -125,7 +125,8 @@
 
     <!-- EXAM IN PROGRESS HUD -->
     <div id="exam-container-final"></div>
-  </main>
+  <footer class="site-footer"><div class="footer-grid"><div class="footer-brand"><h3>QUALITY <span>QUEST</span></h3><p>Plataforma interactiva para el dominio integral de la Calidad y Pruebas de Software. Aprende jugando con analogías claras, casos prácticos de la industria y simulacros oficiales de evaluación.</p></div><div class="footer-col"><h4>Sesiones</h4><ul><li><a href="sesion-01.html">01. Fundamentos &amp; ISO 25010</a></li><li><a href="sesion-02.html">02. CMMI, SPICE &amp; FURPS</a></li><li><a href="sesion-03.html">03. SQA &amp; Calidad Ágil</a></li><li><a href="sesion-04.html">04. Técnicas de Pruebas</a></li><li><a href="sesion-05.html">05. Artefactos &amp; Trazabilidad</a></li></ul></div><div class="footer-col"><h4>Recursos</h4><ul><li><a href="examen-final.html">Examen Final Integrador</a></li><li><a href="#" onclick="if(window.Gamification)Gamification.openBadgesModal();return false;">Medallero &amp; Logros</a></li><li><a href="#" onclick="if(window.Settings)Settings.openModal();return false;">Ajustes &amp; Tema</a></li><li><a href="https://github.com" target="_blank" rel="noopener">Repositorio GitHub</a></li></ul></div></div><div class="footer-bottom"><div>© 2026 <b>Quality Quest</b> · Calidad de Software. Desarrollado para estudiantes y futuros auditores QA.</div><div>Modo Offline Habilitado (PWA) · Certificación Oficial</div></div></footer>
+</main>
 
 <div id="settings-overlay" class="settings-overlay" aria-modal="true" role="dialog" aria-labelledby="settings-title">
   <div class="settings-modal" id="settings-modal">
@@ -175,6 +176,13 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
 });
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./sw.js').catch(function(){});
+  });
+}
 </script>
 </body>
 </html>

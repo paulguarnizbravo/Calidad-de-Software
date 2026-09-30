@@ -64,6 +64,151 @@
       });
     },
 
+    // --- Progress & Error Tracking Methods ---
+    getSessionProgress: function(sessionNum) {
+      return parseInt(localStorage.getItem('qq_progress_s' + sessionNum) || '0', 10);
+    },
+
+    saveSessionProgress: function(sessionNum, percent) {
+      var current = this.getSessionProgress(sessionNum);
+      if (percent > current) {
+        localStorage.setItem('qq_progress_s' + sessionNum, Math.min(100, Math.round(percent)));
+        this.renderProgressBars();
+      }
+    },
+
+    incrementSessionProgress: function(sessionNum, deltaPercent) {
+      if (!sessionNum || sessionNum < 1 || sessionNum > 5) return;
+      var cur = this.getSessionProgress(sessionNum);
+      var next = Math.min(100, cur + (deltaPercent || 15));
+      localStorage.setItem('qq_progress_s' + sessionNum, next);
+      this.renderProgressBars();
+    },
+
+    renderProgressBars: function() {
+      for (var s = 1; s <= 5; s++) {
+        var pct = this.getSessionProgress(s);
+        var fills = document.querySelectorAll('.session-progress-fill[data-session="' + s + '"], [data-progress-session="' + s + '"]');
+        fills.forEach(function(el){
+          el.style.width = pct + '%';
+          if (el.dataset.showText !== 'false') {
+            var label = el.parentElement.querySelector('.session-progress-text');
+            if (label) label.textContent = pct + '%';
+          }
+        });
+      }
+    },
+
+    getMissedQuestions: function() {
+      try {
+        return JSON.parse(localStorage.getItem('qq_missed_questions') || '[]');
+      } catch(e) {
+        return [];
+      }
+    },
+
+    saveMissedQuestion: function(qObj) {
+      if (!qObj || !qObj.question) return;
+      var list = this.getMissedQuestions();
+      var exists = list.some(function(item){
+        return item.question.trim().toLowerCase() === qObj.question.trim().toLowerCase();
+      });
+      if (!exists) {
+        list.push({
+          id: 'err_' + Date.now() + '_' + Math.floor(Math.random()*1000),
+          session: qObj.session || 'General',
+          question: qObj.question,
+          options: qObj.options || [],
+          correct: qObj.correct !== undefined ? qObj.correct : 0,
+          why: qObj.why || ''
+        });
+        localStorage.setItem('qq_missed_questions', JSON.stringify(list));
+        this.updateMissedCountDisplay();
+      }
+    },
+
+    removeMissedQuestion: function(questionText) {
+      if (!questionText) return;
+      var list = this.getMissedQuestions();
+      var target = questionText.trim().toLowerCase();
+      var filtered = list.filter(function(item){
+        return item.question.trim().toLowerCase() !== target;
+      });
+      localStorage.setItem('qq_missed_questions', JSON.stringify(filtered));
+      this.updateMissedCountDisplay();
+    },
+
+    clearMissedQuestions: function() {
+      localStorage.removeItem('qq_missed_questions');
+      this.updateMissedCountDisplay();
+    },
+
+    updateMissedCountDisplay: function() {
+      var count = this.getMissedQuestions().length;
+      document.querySelectorAll('.missed-counter, [data-missed-count]').forEach(function(el){
+        el.textContent = count;
+        el.style.display = count > 0 ? 'inline-flex' : 'none';
+      });
+    },
+
+    // Confetti celebration particles
+    triggerConfetti: function() {
+      try {
+        var canvas = document.createElement('canvas');
+        canvas.id = 'qq-confetti-canvas';
+        canvas.style.position = 'fixed';
+        canvas.style.inset = '0';
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = '999999';
+        document.body.appendChild(canvas);
+
+        var ctx = canvas.getContext('2d');
+        var w = canvas.width = window.innerWidth;
+        var h = canvas.height = window.innerHeight;
+        var pieces = [];
+        var colors = ['#6d28d9', '#a855f7', '#f59e0b', '#10b981', '#3b82f6', '#ec4899', '#ffffff'];
+
+        for (var i = 0; i < 70; i++) {
+          pieces.push({
+            x: Math.random() * w,
+            y: Math.random() * (h * 0.4),
+            w: Math.random() * 9 + 4,
+            h: Math.random() * 5 + 3,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            vy: Math.random() * 3 + 2,
+            vx: (Math.random() - 0.5) * 4,
+            rot: Math.random() * 360,
+            vRot: (Math.random() - 0.5) * 10
+          });
+        }
+
+        var frame = 0;
+        function render() {
+          ctx.clearRect(0, 0, w, h);
+          pieces.forEach(function(p){
+            p.y += p.vy;
+            p.x += p.vx;
+            p.rot += p.vRot;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate((p.rot * Math.PI) / 180);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+            ctx.restore();
+          });
+          frame++;
+          if (frame < 120) {
+            requestAnimationFrame(render);
+          } else {
+            if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
+          }
+        }
+        render();
+      } catch(e) {}
+    },
+
     // Award or penalize an answer
     recordAnswer: function(isCorrect, xpBase, triggerEl, sessionNum) {
       if (xpBase === undefined) xpBase = 10;
@@ -88,7 +233,13 @@
 
         if (window.Sound) Sound.correct();
         this.showFloatingXP(triggerEl, '+' + gained + ' Pts');
+        if (sessionNum) this.incrementSessionProgress(sessionNum, 12);
       } else {
+        if (triggerEl) {
+          triggerEl.classList.remove('shake-anim');
+          void triggerEl.offsetWidth; // trigger reflow
+          triggerEl.classList.add('shake-anim');
+        }
         // In easy mode, streak decreases by 1 instead of full reset
         if (diff === 'easy' && streak > 0) {
           streak = Math.max(0, streak - 1);
@@ -174,6 +325,7 @@
 
     // Toast notification when badge unlocked
     showBadgeToast: function(badge) {
+      this.triggerConfetti();
       var toast = document.createElement('div');
       toast.className = 'badge-toast';
       toast.innerHTML = '<span class="toast-icon">' + badge.icon + '</span>' +
@@ -328,11 +480,24 @@
               }
             });
 
+            var qTitleEl = qDiv.querySelector('b') || qDiv;
+            var qTitleText = qTitleEl.textContent.trim();
+
             if (isRight) {
               btn.classList.add('correct');
+              Gamification.removeMissedQuestion(qTitleText);
               Gamification.recordAnswer(true, 10, btn, sessionNum);
             } else {
               btn.classList.add('wrong');
+              var opts = [];
+              buttons.forEach(function(b){ opts.push(b.textContent.trim()); });
+              Gamification.saveMissedQuestion({
+                session: 'Sesión 0' + (sessionNum || 1),
+                question: qTitleText,
+                options: opts,
+                correct: Math.max(0, ['a','b','c','d'].indexOf(correctLetter)),
+                why: ansText
+              });
               Gamification.recordAnswer(false, 0, btn, sessionNum);
             }
 
@@ -375,9 +540,14 @@
   // --- 5. INITIALIZATION ---
   function startGamification() {
     Gamification.updateDisplays();
+    Gamification.renderProgressBars();
+    Gamification.updateMissedCountDisplay();
     initBadgesButton();
     enhanceSessionQuestions();
   }
+
+  // Expose to window for external integration
+  window.Gamification = Gamification;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', startGamification);
