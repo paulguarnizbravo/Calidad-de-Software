@@ -478,3 +478,91 @@ body.dark-theme .settings-modal .btn-close {
 body.dark-theme .settings-modal .btn-close:hover {
   color: #ffffff !important;
 }
+
+/* ==========================================================================
+   FINAL EXAM & NAV STYLES
+   ========================================================================== */
+.final-nav {
+  background: #3b1b6e !important;
+  color: #ffdf75 !important;
+  font-weight: 800 !important;
+  border-left: 1px solid #5a3899 !important;
+}
+.final-nav:hover {
+  background: #f59e0b !important;
+  color: #1e1035 !important;
+}
+.final-nav.active {
+  background: #f59e0b !important;
+  color: #1e1035 !important;
+}
+
+/* Dark mode overrides for Final Exam */
+body.dark-theme .exam-hud {
+  background: #181432 !important;
+  border-color: #2e2853 !important;
+  color: #f1effd !important;
+}
+body.dark-theme .hud-chip {
+  color: #f1effd !important;
+}
+body.dark-theme .progress-bar-wrap {
+  background: #231e42 !important;
+}
+body.dark-theme .exam-card {
+  background: #181432 !important;
+  border-color: #2e2853 !important;
+  color: #f1effd !important;
+}
+body.dark-theme .q-title {
+  color: #ffffff !important;
+}
+body.dark-theme .q-badge {
+  background: #2b2355 !important;
+  color: #c4b5fd !important;
+}
+body.dark-theme .opt-btn {
+  background: #201a40 !important;
+  border-color: #383060 !important;
+  color: #f1effd !important;
+}
+body.dark-theme .opt-btn .opt-letter {
+  background: #2b2355 !important;
+  color: #c4b5fd !important;
+}
+body.dark-theme .opt-btn:hover:not(:disabled) {
+  background: #322860 !important;
+  border-color: #8b5cf6 !important;
+  color: #ffffff !important;
+}
+body.dark-theme .result-banner {
+  background: #181432 !important;
+  border-color: #2e2853 !important;
+  color: #f1effd !important;
+}
+body.dark-theme .certificate-card {
+  background: #15112b !important;
+  border-color: #3b2866 !important;
+  outline-color: #f59e0b !important;
+  color: #f1effd !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7) !important;
+}
+body.dark-theme .cert-title {
+  color: #ffdf75 !important;
+}
+body.dark-theme .cert-name {
+  color: #c4b5fd !important;
+  border-bottom-color: #4a3b78 !important;
+}
+body.dark-theme .cert-desc {
+  color: #ded8f7 !important;
+}
+body.dark-theme .cert-footer {
+  border-top-color: #3b2e63 !important;
+  color: #a49fc4 !important;
+}
+body.dark-theme .review-item {
+  background: #1c1838 !important;
+  border-color: #332b57 !important;
+  color: #f1effd !important;
+}
