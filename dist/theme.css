@@ -2048,3 +2048,201 @@ body.dark-theme .review-item [style*="#f1f5f9"] {
 }
 
 
+
+
+/* ==========================================================================
+   ORDERED & BEAUTIFIED AUTOEVALUACION (#repaso) & EXERCISES STYLING
+   ========================================================================== */
+
+/* Autoevaluación Container */
+#repaso {
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  padding: 28px 32px !important;
+  margin-bottom: 26px !important;
+}
+
+#repaso h2 {
+  font-size: 1.65rem !important;
+  font-weight: 800 !important;
+  color: var(--ink) !important;
+  margin: 0 0 20px !important;
+  letter-spacing: -0.03em !important;
+}
+
+#repaso h2:after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 4px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #6d28d9, #a78bfa);
+  margin-top: 8px;
+}
+
+/* Individual Question Card in Autoevaluacion */
+#repaso .q {
+  background: #ffffff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  border-radius: 16px !important;
+  padding: 22px 24px !important;
+  margin-top: 18px !important;
+  margin-bottom: 18px !important;
+  box-shadow: 0 4px 16px rgba(38, 42, 91, 0.05) !important;
+  display: block !important;
+  clear: both !important;
+}
+
+/* Question Title Header */
+#repaso .q b:first-child,
+#repaso .q > b {
+  display: block !important;
+  font-size: 1.14rem !important;
+  font-weight: 800 !important;
+  color: #1e1b4b !important;
+  margin: 0 0 16px 0 !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1.5px solid #f1f0fa !important;
+  line-height: 1.45 !important;
+}
+
+/* Question Option Buttons: Vertically Stacked Full-Width Clean Cards */
+#repaso .q button {
+  display: flex !important;
+  width: 100% !important;
+  text-align: left !important;
+  align-items: center !important;
+  gap: 12px !important;
+  background: #f8fafc !important;
+  border: 2px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  padding: 13px 18px !important;
+  margin: 8px 0 !important;
+  font: 600 0.96rem Outfit, Arial !important;
+  color: #1e1b4b !important;
+  cursor: pointer !important;
+  transition: all 0.18s ease !important;
+  outline: none !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+}
+
+#repaso .q button:hover:not(:disabled) {
+  border-color: #8b5cf6 !important;
+  background: #faf5ff !important;
+  transform: translateX(4px) !important;
+  color: #4c1d95 !important;
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.12) !important;
+}
+
+/* Correct and Wrong States */
+#repaso .q button.correct {
+  background: #ecfdf5 !important;
+  border-color: #10b981 !important;
+  color: #065f46 !important;
+  font-weight: 700 !important;
+}
+
+#repaso .q button.wrong {
+  background: #fef2f2 !important;
+  border-color: #ef4444 !important;
+  color: #991b1b !important;
+}
+
+#repaso .q button:disabled {
+  cursor: default !important;
+}
+
+/* Answer Feedback Box in Autoevaluacion */
+#repaso .q .answer {
+  display: none;
+  background: #ecfdf5 !important;
+  border: 1.5px solid #a7f3d0 !important;
+  border-left: 5px solid #10b981 !important;
+  color: #065f46 !important;
+  padding: 14px 18px !important;
+  border-radius: 12px !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+  margin-top: 14px !important;
+  margin-bottom: 0 !important;
+}
+
+#repaso .q .answer.show,
+#repaso .q .answer[style*="display: block"] {
+  display: block !important;
+  animation: fadeInDown 0.25s ease !important;
+}
+
+/* Interactive Guided Exercises button (isolated from #repaso options) */
+#ejercicios-guiados .q button {
+  display: inline-flex !important;
+  width: auto !important;
+  background: linear-gradient(135deg, #6d28d9, #7c3aed) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 11px 22px !important;
+  font: 700 0.92rem Outfit, Arial !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.22) !important;
+  margin-top: 10px !important;
+  margin-bottom: 4px !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+#ejercicios-guiados .q button:hover {
+  background: #5b21b6 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(109, 40, 217, 0.32) !important;
+}
+
+/* Dark theme for Autoevaluacion */
+body.dark-theme #repaso {
+  background: #181432 !important;
+  border-color: #2e2853 !important;
+}
+
+body.dark-theme #repaso .q {
+  background: #1e183a !important;
+  border-color: #383060 !important;
+}
+
+body.dark-theme #repaso .q b:first-child,
+body.dark-theme #repaso .q > b {
+  color: #ffffff !important;
+  border-bottom-color: #2e2853 !important;
+}
+
+body.dark-theme #repaso .q button {
+  background: #201a40 !important;
+  border-color: #383060 !important;
+  color: #f1effd !important;
+}
+
+body.dark-theme #repaso .q button:hover:not(:disabled) {
+  border-color: #8b5cf6 !important;
+  background: #322860 !important;
+  color: #ffffff !important;
+}
+
+body.dark-theme #repaso .q button.correct {
+  background: #064e3b !important;
+  border-color: #10b981 !important;
+  color: #a7f3d0 !important;
+}
+
+body.dark-theme #repaso .q button.wrong {
+  background: #7f1d1d !important;
+  border-color: #ef4444 !important;
+  color: #fecaca !important;
+}
+
+body.dark-theme #repaso .q .answer {
+  background: #064e3b !important;
+  border-color: #047857 !important;
+  border-left-color: #10b981 !important;
+  color: #a7f3d0 !important;
+}
