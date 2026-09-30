@@ -14,3 +14,467 @@ html{scroll-behavior:smooth}body{background:radial-gradient(circle at 6% 3%,#ede
 .topnav a.home{display:grid;place-items:center;width:34px;padding:0!important;font-size:1.35rem;line-height:1;border-radius:8px 0 0 8px!important;background:#332a5b!important;color:#fff!important}.topnav a.home:before{display:none}.topnav a.home:hover{background:#6d28d9!important}.topnav a.home+ a{border-radius:0!important}.session-brand{color:#fff;text-decoration:none;font-size:1.35rem;font-weight:800;letter-spacing:-.04em;white-space:nowrap}.session-brand span{color:#b9a2ff}@media(max-width:1060px){.session-brand{font-size:1.05rem}.top{flex-wrap:wrap}.topnav{order:3}}
 .topnav a.active{background:#6d28d9!important;color:#fff!important}.topnav a.active:before{background:#fff!important}
 .top{display:flex!important;flex-wrap:nowrap!important;gap:18px}.topnav{flex-wrap:nowrap!important;align-items:center!important;white-space:nowrap}.topnav:before{display:none!important}.topnav a{flex:0 0 auto!important}.topnav a.home{height:34px;min-width:34px}.gamebar{margin-left:auto!important;flex-wrap:nowrap!important;white-space:nowrap}.gamechip{white-space:nowrap;min-width:0!important}.gameicon{flex:0 0 auto}@media(max-width:1180px){.top{flex-wrap:wrap!important}.topnav{order:3;width:100%;justify-content:center}.gamebar{margin-left:0!important}}@media(max-width:720px){.topnav{justify-content:flex-start}.gamebar{width:100%;justify-content:flex-start!important}}
+
+/* ==========================================================================
+   SETTINGS MODAL & THEMES (CLARO / OSCURO) & BUTTONS
+   ========================================================================== */
+
+/* Settings button in navbar */
+.settings-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: #242040;
+  border: 1px solid #403868;
+  border-radius: 12px;
+  font-size: 1.15rem;
+  cursor: pointer;
+  color: #fff;
+  transition: transform .15s, background .15s, border-color .15s;
+  flex: 0 0 38px !important;
+  padding: 0;
+  margin-left: 4px;
+}
+.settings-btn:hover {
+  background: #6d28d9;
+  border-color: #a78bfa;
+  transform: translateY(-2px);
+}
+
+/* Modal Overlay: ALWAYS hidden by default! Only shows with .show */
+.settings-overlay {
+  display: none !important;
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 6, 22, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+.settings-overlay.show {
+  display: flex !important;
+}
+
+/* Settings Modal Dialog */
+.settings-modal {
+  background: #ffffff;
+  color: #15142a;
+  border-radius: 20px;
+  padding: 30px 26px 24px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 24px 60px rgba(18, 16, 64, 0.25);
+  border: 1px solid #e8e5f4;
+  position: relative;
+  font-family: Outfit, Arial, sans-serif;
+  box-sizing: border-box;
+  animation: modalPop .2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes modalPop {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.settings-modal h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #15142a;
+}
+.settings-modal .settings-sub {
+  margin: 2px 0 0;
+  font-size: .84rem;
+  color: #7068a0;
+}
+.settings-modal hr {
+  border: none;
+  border-top: 1px solid #e8e5f4;
+  margin: 16px 0;
+}
+.settings-modal label {
+  font-weight: 700;
+  font-size: .92rem;
+  color: #15142a;
+  display: block;
+  margin-bottom: 6px;
+}
+.settings-modal .lbl-hint {
+  font-weight: 400;
+  color: #7068a0;
+}
+.settings-modal input[type="text"],
+.settings-modal select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 14px;
+  border: 1.5px solid #dddff0;
+  border-radius: 10px;
+  font: 1rem Outfit, Arial, sans-serif;
+  color: #15142a;
+  background-color: #fafaff;
+  margin-bottom: 16px;
+  outline: none;
+  transition: border-color .18s, box-shadow .18s;
+}
+.settings-modal select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
+}
+.settings-modal input[type="text"]:focus,
+.settings-modal select:focus {
+  border-color: #6d28d9;
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.15);
+}
+.settings-modal .check-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  margin-bottom: 22px;
+  font-size: .93rem;
+  color: #15142a;
+  font-weight: 700;
+}
+.settings-modal .check-label input {
+  width: 18px;
+  height: 18px;
+  accent-color: #6d28d9;
+  cursor: pointer;
+}
+.settings-modal .modal-btns {
+  display: flex;
+  gap: 10px;
+}
+.settings-modal .btn-save {
+  flex: 1;
+  padding: 13px;
+  background: #1a6e78;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font: 700 1rem Outfit, Arial, sans-serif;
+  cursor: pointer;
+  transition: background .18s, transform .15s;
+}
+.settings-modal .btn-save:hover {
+  background: #14555d;
+  transform: translateY(-1px);
+}
+.settings-modal .btn-cancel {
+  padding: 13px 20px;
+  background: #fff;
+  color: #444;
+  border: 1.5px solid #dddff0;
+  border-radius: 12px;
+  font: 700 1rem Outfit, Arial, sans-serif;
+  cursor: pointer;
+  transition: background .18s;
+}
+.settings-modal .btn-cancel:hover {
+  background: #f4f4fb;
+}
+.settings-modal .btn-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #7068a0;
+  line-height: 1;
+  padding: 4px;
+}
+.settings-modal .btn-close:hover {
+  color: #15142a;
+}
+
+/* ==========================================================================
+   DARK THEME COMPREHENSIVE RULES
+   ========================================================================== */
+:root[data-theme="dark"], body.dark-theme {
+  --ink: #f2f0fc;
+  --muted: #9e97c4;
+  --purple: #8b5cf6;
+  --violet: #a78bfa;
+  --paper: #0e0c1c;
+  --line: #2e2853;
+  --surface: #181432;
+  --soft: #241e45;
+  --gold: #ffd766;
+}
+
+body.dark-theme {
+  background: radial-gradient(circle at 6% 3%, #221446 0, transparent 30rem), #0e0c1c !important;
+  color: #f2f0fc !important;
+}
+
+body.dark-theme .wrap {
+  color: #f2f0fc !important;
+}
+
+/* Containers & sections */
+body.dark-theme .section,
+body.dark-theme .box,
+body.dark-theme .panel,
+body.dark-theme .index,
+body.dark-theme .side,
+body.dark-theme .card,
+body.dark-theme .nav,
+body.dark-theme .progress,
+body.dark-theme .coursemap,
+body.dark-theme .concept,
+body.dark-theme .game {
+  background: #181432 !important;
+  border-color: #2e2853 !important;
+  color: #f2f0fc !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+}
+
+body.dark-theme .section h2,
+body.dark-theme .box h2,
+body.dark-theme .panel h2,
+body.dark-theme .card h3,
+body.dark-theme .concept h3 {
+  color: #ffffff !important;
+}
+
+/* Sidebar navigation */
+body.dark-theme .side b,
+body.dark-theme .index b {
+  color: #ffffff !important;
+}
+body.dark-theme .side a,
+body.dark-theme .index a {
+  color: #c4b5fd !important;
+  border-bottom-color: #262047 !important;
+}
+body.dark-theme .side a:hover,
+body.dark-theme .index a:hover {
+  background: #2b2355 !important;
+  color: #ffffff !important;
+}
+
+/* Progress / Sub-nav buttons */
+body.dark-theme .progress a,
+body.dark-theme .nav a {
+  background: #221c42 !important;
+  border-color: #3b3363 !important;
+  color: #e2ddf8 !important;
+}
+body.dark-theme .progress a:hover,
+body.dark-theme .nav a:hover {
+  background: #352a68 !important;
+  border-color: #8b5cf6 !important;
+  color: #ffffff !important;
+}
+
+/* Callout notes and analogies */
+body.dark-theme .note {
+  background: #201a40 !important;
+  border-left-color: #8b5cf6 !important;
+  color: #e2ddf8 !important;
+  box-shadow: inset 0 0 0 1px #3a3266 !important;
+}
+body.dark-theme .analogy {
+  background: #261f12 !important;
+  border-color: #634b15 !important;
+  color: #fef08a !important;
+  box-shadow: inset 0 0 0 1px #46340e !important;
+}
+
+/* ISO cards in sessions */
+body.dark-theme .iso article {
+  background: #1d1838 !important;
+  border-color: #383060 !important;
+  color: #ded9f7 !important;
+}
+body.dark-theme .iso b {
+  color: #c4b5fd !important;
+}
+
+/* Quiz questions in sessions */
+body.dark-theme .q {
+  border-top-color: #2e2853 !important;
+}
+body.dark-theme .q b {
+  color: #ffffff !important;
+}
+body.dark-theme .q button {
+  background: #221c42 !important;
+  border-color: #3a3266 !important;
+  color: #ede9fe !important;
+}
+body.dark-theme .q button:hover {
+  background: #342a66 !important;
+  border-color: #8b5cf6 !important;
+}
+body.dark-theme .answer {
+  background: #064e3b !important;
+  color: #a7f3d0 !important;
+}
+
+/* Table styles */
+body.dark-theme table {
+  background: #181432 !important;
+  border-color: #2e2853 !important;
+}
+body.dark-theme th {
+  background: #231d45 !important;
+  color: #c4b5fd !important;
+}
+body.dark-theme td {
+  border-color: #2e2853 !important;
+  color: #ded9f7 !important;
+}
+
+/* Index.html game interactive elements */
+body.dark-theme .question {
+  color: #ffffff !important;
+}
+body.dark-theme .option {
+  background: #221c42 !important;
+  border-color: #3a3266 !important;
+  color: #ede9fe !important;
+}
+body.dark-theme .option:hover:not(:disabled) {
+  background: #342a66 !important;
+  border-color: #8b5cf6 !important;
+  color: #ffffff !important;
+}
+body.dark-theme .option.correct {
+  background: #064e3b !important;
+  border-color: #10b981 !important;
+  color: #d1fae5 !important;
+}
+body.dark-theme .option.wrong {
+  background: #4c111a !important;
+  border-color: #ef4444 !important;
+  color: #fee2e2 !important;
+}
+body.dark-theme .feedback {
+  background: #201a40 !important;
+  border-color: #3a3266 !important;
+  color: #c4b5fd !important;
+}
+body.dark-theme .case {
+  background: #1e193d !important;
+  border-color: #3a3266 !important;
+  color: #e2ddf8 !important;
+}
+body.dark-theme .tabs button {
+  background: #221c42 !important;
+  border-color: #3a3266 !important;
+  color: #c7c4df !important;
+}
+body.dark-theme .tabs button.active {
+  background: #6d28d9 !important;
+  border-color: #8b5cf6 !important;
+  color: #ffffff !important;
+}
+body.dark-theme #sessions button {
+  background: #221c42 !important;
+  border-color: #3a3266 !important;
+  color: #c7c4df !important;
+}
+body.dark-theme #sessions button.active {
+  background: #6d28d9 !important;
+  border-color: #8b5cf6 !important;
+  color: #ffffff !important;
+}
+body.dark-theme .next {
+  background: #6d28d9 !important;
+  color: #ffffff !important;
+}
+
+/* Roadflow on index.html in dark mode */
+body.dark-theme .roadflow:before {
+  background: #7c3aed !important;
+}
+body.dark-theme .trunk {
+  background: #eab308 !important;
+  border-color: #1b1731 !important;
+  color: #111 !important;
+}
+body.dark-theme .branches li {
+  background: #282012 !important;
+  border-color: #5d4615 !important;
+  color: #fef08a !important;
+}
+body.dark-theme .branches li:hover {
+  background: #392c15 !important;
+}
+body.dark-theme .flowlabel {
+  background: #181432 !important;
+  color: #c4b5fd !important;
+  border: 1px solid #3a3266 !important;
+}
+body.dark-theme .mapintro {
+  background: #241d13 !important;
+  border-color: #5d4615 !important;
+  color: #fde047 !important;
+}
+
+/* Dark mode for Settings Modal */
+body.dark-theme .settings-modal {
+  background: #181433 !important;
+  color: #f1effd !important;
+  border-color: #3b3363 !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 0 1px #3b3363 !important;
+}
+body.dark-theme .settings-modal h2 {
+  color: #ffffff !important;
+}
+body.dark-theme .settings-modal .settings-sub {
+  color: #a49fc4 !important;
+}
+body.dark-theme .settings-modal hr {
+  border-top-color: #312b54 !important;
+}
+body.dark-theme .settings-modal label {
+  color: #f1effd !important;
+}
+body.dark-theme .settings-modal .lbl-hint {
+  color: #9e97c4 !important;
+}
+body.dark-theme .settings-modal input[type="text"],
+body.dark-theme .settings-modal select {
+  background-color: #221d42 !important;
+  border-color: #433a70 !important;
+  color: #ffffff !important;
+}
+body.dark-theme .settings-modal select option {
+  background: #181433;
+  color: #ffffff;
+}
+body.dark-theme .settings-modal input[type="text"]:focus,
+body.dark-theme .settings-modal select:focus {
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25) !important;
+}
+body.dark-theme .settings-modal .check-label {
+  color: #f1effd !important;
+}
+body.dark-theme .settings-modal .btn-cancel {
+  background: #221d42 !important;
+  border-color: #433a70 !important;
+  color: #c7c4df !important;
+}
+body.dark-theme .settings-modal .btn-cancel:hover {
+  background: #2c2555 !important;
+  color: #ffffff !important;
+}
+body.dark-theme .settings-modal .btn-close {
+  color: #a49fc4 !important;
+}
+body.dark-theme .settings-modal .btn-close:hover {
+  color: #ffffff !important;
+}
